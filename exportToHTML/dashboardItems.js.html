@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>dashboardItems.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e0957b;}
+.s1 { color: #c9c9d1;}
+.s2 { color: #c9c9d1;}
+.s3 { color: #62a362;}
+.s4 { color: #e0957b; font-weight: bold;}
+.s5 { color: #c7a65d;}
+</style>
+</head>
+<body bgcolor="#1d1d26">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+dashboardItems.js</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s2">* as </span><span class="s1">React from </span><span class="s3">'react'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">ListItemButton from </span><span class="s3">'@mui/material/ListItemButton'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">ListItemIcon from </span><span class="s3">'@mui/material/ListItemIcon'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">ListItemText from </span><span class="s3">'@mui/material/ListItemText'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">ListSubheader from </span><span class="s3">'@mui/material/ListSubheader'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">DashboardIcon from </span><span class="s3">'@mui/icons-material/Dashboard'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">ShoppingCartIcon from </span><span class="s3">'@mui/icons-material/ShoppingCart'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">PeopleIcon from </span><span class="s3">'@mui/icons-material/People'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">BarChartIcon from </span><span class="s3">'@mui/icons-material/BarChart'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">LayersIcon from </span><span class="s3">'@mui/icons-material/Layers'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">AssignmentIcon from </span><span class="s3">'@mui/icons-material/Assignment'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">{ListItemSecondaryAction} from </span><span class="s3">&quot;@mui/material&quot;</span><span class="s4">;</span>
+
+<span class="s0">export const </span><span class="s1">mainListItems </span><span class="s2">= </span><span class="s1">(</span>
+    <span class="s5">&lt;React.Fragment&gt;</span>
+        <span class="s5">&lt;ListItemButton&gt;</span>
+            <span class="s5">&lt;ListItemIcon&gt;</span>
+                <span class="s5">&lt;DashboardIcon /&gt;</span>
+            <span class="s5">&lt;/ListItemIcon&gt;</span>
+            <span class="s5">&lt;ListItemText </span><span class="s2">primary</span><span class="s3">=&quot;Dashboard&quot;  </span><span class="s5">/&gt;</span>
+
+        <span class="s5">&lt;/ListItemButton&gt;</span>
+        <span class="s5">&lt;ListItemButton&gt;</span>
+            <span class="s5">&lt;ListItemIcon&gt;</span>
+                <span class="s5">&lt;ShoppingCartIcon /&gt;</span>
+            <span class="s5">&lt;/ListItemIcon&gt;</span>
+            <span class="s5">&lt;ListItemText </span><span class="s2">primary</span><span class="s3">=&quot;Clients&quot; </span><span class="s5">/&gt;</span>
+        <span class="s5">&lt;/ListItemButton&gt;</span>
+        <span class="s5">&lt;ListItemButton&gt;</span>
+            <span class="s5">&lt;ListItemIcon&gt;</span>
+                <span class="s5">&lt;PeopleIcon /&gt;</span>
+            <span class="s5">&lt;/ListItemIcon&gt;</span>
+            <span class="s5">&lt;ListItemText </span><span class="s2">primary</span><span class="s3">=&quot;Project&quot; </span><span class="s5">/&gt;</span>
+        <span class="s5">&lt;/ListItemButton&gt;</span>
+        <span class="s5">&lt;ListItemButton&gt;</span>
+            <span class="s5">&lt;ListItemIcon&gt;</span>
+                <span class="s5">&lt;BarChartIcon /&gt;</span>
+            <span class="s5">&lt;/ListItemIcon&gt;</span>
+            <span class="s5">&lt;ListItemText </span><span class="s2">primary</span><span class="s3">=&quot;Gestion de projet&quot; </span><span class="s5">/&gt;</span>
+        <span class="s5">&lt;/ListItemButton&gt;</span>
+        <span class="s5">&lt;ListItemButton&gt;</span>
+            <span class="s5">&lt;ListItemIcon&gt;</span>
+                <span class="s5">&lt;LayersIcon /&gt;</span>
+            <span class="s5">&lt;/ListItemIcon&gt;</span>
+            <span class="s5">&lt;ListItemText </span><span class="s2">primary</span><span class="s3">=&quot;Integrations&quot; </span><span class="s5">/&gt;</span>
+        <span class="s5">&lt;/ListItemButton&gt;</span>
+    <span class="s5">&lt;/React.Fragment&gt;</span>
+<span class="s1">)</span><span class="s4">;</span>
+
+<span class="s0">export const </span><span class="s1">secondaryListItems </span><span class="s2">= </span><span class="s1">(</span>
+    <span class="s5">&lt;React.Fragment&gt;</span>
+        <span class="s5">&lt;ListSubheader </span><span class="s2">component</span><span class="s3">=&quot;div&quot; </span><span class="s2">inset</span><span class="s5">&gt;</span>
+           <span class="s1">Utilisateurs</span>
+        <span class="s5">&lt;/ListSubheader&gt;</span>
+        <span class="s5">&lt;ListItemButton&gt;</span>
+            <span class="s5">&lt;ListItemIcon&gt;</span>
+                <span class="s5">&lt;AssignmentIcon /&gt;</span>
+            <span class="s5">&lt;/ListItemIcon&gt;</span>
+            <span class="s5">&lt;ListItemText </span><span class="s2">primary</span><span class="s3">=&quot;Mon profil&quot; </span><span class="s5">/&gt;</span>
+        <span class="s5">&lt;/ListItemButton&gt;</span>
+
+    <span class="s5">&lt;/React.Fragment&gt;</span>
+<span class="s1">)</span><span class="s4">;</span></pre>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>Dashboard.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #e0957b;}
+.s1 { color: #c9c9d1;}
+.s2 { color: #c9c9d1;}
+.s3 { color: #62a362;}
+.s4 { color: #e0957b; font-weight: bold;}
+.s5 { color: #4dacf0;}
+.s6 { color: #c7a65d;}
+.s7 { color: #676773;}
+</style>
+</head>
+<body bgcolor="#1d1d26">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Dashboard.js</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s2">* as </span><span class="s1">React from </span><span class="s3">'react'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">{ styled</span><span class="s4">, </span><span class="s1">createTheme</span><span class="s4">, </span><span class="s1">ThemeProvider } from </span><span class="s3">'@mui/material/styles'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">CssBaseline from </span><span class="s3">'@mui/material/CssBaseline'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">MuiDrawer from </span><span class="s3">'@mui/material/Drawer'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Box from </span><span class="s3">'@mui/material/Box'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">MuiAppBar from </span><span class="s3">'@mui/material/AppBar'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Toolbar from </span><span class="s3">'@mui/material/Toolbar'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">List from </span><span class="s3">'@mui/material/List'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Typography from </span><span class="s3">'@mui/material/Typography'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Divider from </span><span class="s3">'@mui/material/Divider'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">IconButton from </span><span class="s3">'@mui/material/IconButton'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Badge from </span><span class="s3">'@mui/material/Badge'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Container from </span><span class="s3">'@mui/material/Container'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Grid from </span><span class="s3">'@mui/material/Grid'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Paper from </span><span class="s3">'@mui/material/Paper'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">Link from </span><span class="s3">'@mui/material/Link'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">MenuIcon from </span><span class="s3">'@mui/icons-material/Menu'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">ChevronLeftIcon from </span><span class="s3">'@mui/icons-material/ChevronLeft'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">NotificationsIcon from </span><span class="s3">'@mui/icons-material/Notifications'</span><span class="s4">;</span>
+<span class="s0">import </span><span class="s1">{mainListItems</span><span class="s4">, </span><span class="s1">secondaryListItems} from </span><span class="s3">&quot;./dashboardItems&quot;</span><span class="s4">;</span>
+
+<span class="s0">const </span><span class="s1">drawerWidth </span><span class="s2">= </span><span class="s5">240</span><span class="s4">;</span>
+
+<span class="s0">const </span><span class="s1">AppBar </span><span class="s2">= </span><span class="s1">styled(MuiAppBar</span><span class="s4">, </span><span class="s1">{</span>
+    <span class="s1">shouldForwardProp</span><span class="s2">: </span><span class="s1">(prop) </span><span class="s2">=&gt; </span><span class="s1">prop </span><span class="s2">!== </span><span class="s3">'open'</span><span class="s4">,</span>
+<span class="s1">})(({ theme</span><span class="s4">, </span><span class="s1">open }) </span><span class="s2">=&gt; </span><span class="s1">({</span>
+    <span class="s1">zIndex</span><span class="s2">: </span><span class="s1">theme.zIndex.drawer </span><span class="s2">+ </span><span class="s5">1</span><span class="s4">,</span>
+    <span class="s1">transition</span><span class="s2">: </span><span class="s1">theme.transitions.create([</span><span class="s3">'width'</span><span class="s4">, </span><span class="s3">'margin'</span><span class="s1">]</span><span class="s4">, </span><span class="s1">{</span>
+        <span class="s1">easing</span><span class="s2">: </span><span class="s1">theme.transitions.easing.sharp</span><span class="s4">,</span>
+        <span class="s1">duration</span><span class="s2">: </span><span class="s1">theme.transitions.duration.leavingScreen</span><span class="s4">,</span>
+    <span class="s1">})</span><span class="s4">,</span>
+    <span class="s1">...(open </span><span class="s2">&amp;&amp; </span><span class="s1">{</span>
+        <span class="s1">marginLeft</span><span class="s2">: </span><span class="s1">drawerWidth</span><span class="s4">,</span>
+        <span class="s1">width</span><span class="s2">: </span><span class="s3">`calc(100% - </span><span class="s1">${drawerWidth}</span><span class="s3">px)`</span><span class="s4">,</span>
+        <span class="s1">transition</span><span class="s2">: </span><span class="s1">theme.transitions.create([</span><span class="s3">'width'</span><span class="s4">, </span><span class="s3">'margin'</span><span class="s1">]</span><span class="s4">, </span><span class="s1">{</span>
+            <span class="s1">easing</span><span class="s2">: </span><span class="s1">theme.transitions.easing.sharp</span><span class="s4">,</span>
+            <span class="s1">duration</span><span class="s2">: </span><span class="s1">theme.transitions.duration.enteringScreen</span><span class="s4">,</span>
+        <span class="s1">})</span><span class="s4">,</span>
+    <span class="s1">})</span><span class="s4">,</span>
+<span class="s1">}))</span><span class="s4">;</span>
+
+<span class="s0">const </span><span class="s1">Drawer </span><span class="s2">= </span><span class="s1">styled(MuiDrawer</span><span class="s4">, </span><span class="s1">{ shouldForwardProp</span><span class="s2">: </span><span class="s1">(prop) </span><span class="s2">=&gt; </span><span class="s1">prop </span><span class="s2">!== </span><span class="s3">'open' </span><span class="s1">})(</span>
+    <span class="s1">({ theme</span><span class="s4">, </span><span class="s1">open }) </span><span class="s2">=&gt; </span><span class="s1">({</span>
+        <span class="s3">'&amp; .MuiDrawer-paper'</span><span class="s2">: </span><span class="s1">{</span>
+            <span class="s1">position</span><span class="s2">: </span><span class="s3">'relative'</span><span class="s4">,</span>
+            <span class="s1">whiteSpace</span><span class="s2">: </span><span class="s3">'nowrap'</span><span class="s4">,</span>
+            <span class="s1">width</span><span class="s2">: </span><span class="s1">drawerWidth</span><span class="s4">,</span>
+            <span class="s1">transition</span><span class="s2">: </span><span class="s1">theme.transitions.create(</span><span class="s3">'width'</span><span class="s4">, </span><span class="s1">{</span>
+                <span class="s1">easing</span><span class="s2">: </span><span class="s1">theme.transitions.easing.sharp</span><span class="s4">,</span>
+                <span class="s1">duration</span><span class="s2">: </span><span class="s1">theme.transitions.duration.enteringScreen</span><span class="s4">,</span>
+            <span class="s1">})</span><span class="s4">,</span>
+            <span class="s1">boxSizing</span><span class="s2">: </span><span class="s3">'border-box'</span><span class="s4">,</span>
+            <span class="s1">...(</span><span class="s2">!</span><span class="s1">open </span><span class="s2">&amp;&amp; </span><span class="s1">{</span>
+                <span class="s1">overflowX</span><span class="s2">: </span><span class="s3">'hidden'</span><span class="s4">,</span>
+                <span class="s1">transition</span><span class="s2">: </span><span class="s1">theme.transitions.create(</span><span class="s3">'width'</span><span class="s4">, </span><span class="s1">{</span>
+                    <span class="s1">easing</span><span class="s2">: </span><span class="s1">theme.transitions.easing.sharp</span><span class="s4">,</span>
+                    <span class="s1">duration</span><span class="s2">: </span><span class="s1">theme.transitions.duration.leavingScreen</span><span class="s4">,</span>
+                <span class="s1">})</span><span class="s4">,</span>
+                <span class="s1">width</span><span class="s2">: </span><span class="s1">theme.spacing(</span><span class="s5">7</span><span class="s1">)</span><span class="s4">,</span>
+                <span class="s1">[theme.breakpoints.up(</span><span class="s3">'sm'</span><span class="s1">)]</span><span class="s2">: </span><span class="s1">{</span>
+                    <span class="s1">width</span><span class="s2">: </span><span class="s1">theme.spacing(</span><span class="s5">9</span><span class="s1">)</span><span class="s4">,</span>
+                <span class="s1">}</span><span class="s4">,</span>
+            <span class="s1">})</span><span class="s4">,</span>
+        <span class="s1">}</span><span class="s4">,</span>
+    <span class="s1">})</span><span class="s4">,</span>
+<span class="s1">)</span><span class="s4">;</span>
+
+<span class="s0">const </span><span class="s1">mdTheme </span><span class="s2">= </span><span class="s1">createTheme()</span><span class="s4">;</span>
+
+<span class="s0">function </span><span class="s1">DashboardContent() {</span>
+    <span class="s0">const </span><span class="s1">[open</span><span class="s4">, </span><span class="s1">setOpen] </span><span class="s2">= </span><span class="s1">React.useState(</span><span class="s0">true</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s0">const </span><span class="s1">toggleDrawer </span><span class="s2">= </span><span class="s1">() </span><span class="s2">=&gt; </span><span class="s1">{</span>
+        <span class="s1">setOpen(</span><span class="s2">!</span><span class="s1">open)</span><span class="s4">;</span>
+    <span class="s1">}</span><span class="s4">;</span>
+
+    <span class="s0">return </span><span class="s1">(</span>
+        <span class="s6">&lt;ThemeProvider </span><span class="s2">theme</span><span class="s3">=</span><span class="s1">{mdTheme}</span><span class="s6">&gt;</span>
+            <span class="s6">&lt;Box </span><span class="s2">sx</span><span class="s3">=</span><span class="s1">{{ display</span><span class="s2">: </span><span class="s3">'flex' </span><span class="s1">}}</span><span class="s6">&gt;</span>
+                <span class="s6">&lt;CssBaseline /&gt;</span>
+                <span class="s6">&lt;AppBar </span><span class="s2">position</span><span class="s3">=&quot;absolute&quot; </span><span class="s2">open</span><span class="s3">=</span><span class="s1">{open}</span><span class="s6">&gt;</span>
+                    <span class="s6">&lt;Toolbar</span>
+                        <span class="s2">sx</span><span class="s3">=</span><span class="s1">{{</span>
+                            <span class="s1">pr</span><span class="s2">: </span><span class="s3">'24px'</span><span class="s4">, </span><span class="s7">// keep right padding when drawer closed</span>
+                        <span class="s1">}}</span>
+                    <span class="s6">&gt;</span>
+                        <span class="s6">&lt;IconButton</span>
+                            <span class="s2">edge</span><span class="s3">=&quot;start&quot;</span>
+                            <span class="s2">color</span><span class="s3">=&quot;inherit&quot;</span>
+                            <span class="s2">aria-label</span><span class="s3">=&quot;open drawer&quot;</span>
+                            <span class="s2">onClick</span><span class="s3">=</span><span class="s1">{toggleDrawer}</span>
+                            <span class="s2">sx</span><span class="s3">=</span><span class="s1">{{</span>
+                                <span class="s1">marginRight</span><span class="s2">: </span><span class="s3">'36px'</span><span class="s4">,</span>
+                                <span class="s1">...(open </span><span class="s2">&amp;&amp; </span><span class="s1">{ display</span><span class="s2">: </span><span class="s3">'none' </span><span class="s1">})</span><span class="s4">,</span>
+                            <span class="s1">}}</span>
+                        <span class="s6">&gt;</span>
+                            <span class="s6">&lt;MenuIcon /&gt;</span>
+                        <span class="s6">&lt;/IconButton&gt;</span>
+                        <span class="s6">&lt;Typography</span>
+                            <span class="s2">component</span><span class="s3">=&quot;h1&quot;</span>
+                            <span class="s2">variant</span><span class="s3">=&quot;h6&quot;</span>
+                            <span class="s2">color</span><span class="s3">=&quot;inherit&quot;</span>
+                            <span class="s2">noWrap</span>
+                            <span class="s2">sx</span><span class="s3">=</span><span class="s1">{{ flexGrow</span><span class="s2">: </span><span class="s5">1 </span><span class="s1">}}</span>
+                        <span class="s6">&gt;</span>
+                            <span class="s1">Dashboard</span>
+                        <span class="s6">&lt;/Typography&gt;</span>
+
+                    <span class="s6">&lt;/Toolbar&gt;</span>
+                <span class="s6">&lt;/AppBar&gt;</span>
+                <span class="s6">&lt;Drawer </span><span class="s2">variant</span><span class="s3">=&quot;permanent&quot; </span><span class="s2">open</span><span class="s3">=</span><span class="s1">{open}</span><span class="s6">&gt;</span>
+                    <span class="s6">&lt;Toolbar</span>
+                        <span class="s2">sx</span><span class="s3">=</span><span class="s1">{{</span>
+                            <span class="s1">display</span><span class="s2">: </span><span class="s3">'flex'</span><span class="s4">,</span>
+                            <span class="s1">alignItems</span><span class="s2">: </span><span class="s3">'center'</span><span class="s4">,</span>
+                            <span class="s1">justifyContent</span><span class="s2">: </span><span class="s3">'flex-end'</span><span class="s4">,</span>
+                            <span class="s1">px</span><span class="s2">: </span><span class="s1">[</span><span class="s5">1</span><span class="s1">]</span><span class="s4">,</span>
+                        <span class="s1">}}</span>
+                    <span class="s6">&gt;</span>
+                        <span class="s6">&lt;IconButton </span><span class="s2">onClick</span><span class="s3">=</span><span class="s1">{toggleDrawer}</span><span class="s6">&gt;</span>
+                            <span class="s6">&lt;ChevronLeftIcon /&gt;</span>
+                        <span class="s6">&lt;/IconButton&gt;</span>
+                    <span class="s6">&lt;/Toolbar&gt;</span>
+                    <span class="s6">&lt;Divider /&gt;</span>
+                    <span class="s6">&lt;List </span><span class="s2">component</span><span class="s3">=&quot;nav&quot;</span><span class="s6">&gt;</span>
+                        <span class="s1">{mainListItems}</span>
+                        <span class="s6">&lt;Divider </span><span class="s2">sx</span><span class="s3">=</span><span class="s1">{{ my</span><span class="s2">: </span><span class="s5">1 </span><span class="s1">}} </span><span class="s6">/&gt;</span>
+                        <span class="s1">{secondaryListItems}</span>
+                    <span class="s6">&lt;/List&gt;</span>
+                <span class="s6">&lt;/Drawer&gt;</span>
+                <span class="s6">&lt;Box</span>
+                    <span class="s2">component</span><span class="s3">=&quot;main&quot;</span>
+                    <span class="s2">sx</span><span class="s3">=</span><span class="s1">{{</span>
+                        <span class="s1">backgroundColor</span><span class="s2">: </span><span class="s1">(theme) </span><span class="s2">=&gt;</span>
+                            <span class="s1">theme.palette.mode </span><span class="s2">=== </span><span class="s3">'light'</span>
+                                <span class="s2">? </span><span class="s1">theme.palette.grey[</span><span class="s5">100</span><span class="s1">]</span>
+                                <span class="s2">: </span><span class="s1">theme.palette.grey[</span><span class="s5">900</span><span class="s1">]</span><span class="s4">,</span>
+                        <span class="s1">flexGrow</span><span class="s2">: </span><span class="s5">1</span><span class="s4">,</span>
+                        <span class="s1">height</span><span class="s2">: </span><span class="s3">'100vh'</span><span class="s4">,</span>
+                        <span class="s1">overflow</span><span class="s2">: </span><span class="s3">'auto'</span><span class="s4">,</span>
+                    <span class="s1">}}</span>
+                <span class="s6">&gt;</span>
+                    <span class="s6">&lt;Toolbar /&gt;</span>
+
+
+                    <span class="s6">&lt;Container </span><span class="s2">maxWidth</span><span class="s3">=&quot;lg&quot; </span><span class="s2">sx</span><span class="s3">=</span><span class="s1">{{ mt</span><span class="s2">: </span><span class="s5">4</span><span class="s4">, </span><span class="s1">mb</span><span class="s2">: </span><span class="s5">4 </span><span class="s1">}}</span><span class="s6">&gt;</span>
+
+
+                    <span class="s6">&lt;/Container&gt;</span>
+                <span class="s6">&lt;/Box&gt;</span>
+            <span class="s6">&lt;/Box&gt;</span>
+        <span class="s6">&lt;/ThemeProvider&gt;</span>
+    <span class="s1">)</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s0">export default function </span><span class="s1">Dashboard() {</span>
+    <span class="s0">return </span><span class="s6">&lt;DashboardContent /&gt;</span><span class="s4">;</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
